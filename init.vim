@@ -9,20 +9,20 @@ Plug 'tpope/vim-fugitive'
 "Plugin 'tpope/vim-endwise'
 "Plugin 'tpope/vim-dispatch'
 Plug 'mattn/emmet-vim'
-"Plugin 'ervandew/snipmate.vim'
-Plug 'ervandew/supertab'
+Plug 'sirver/ultisnips'
+Plug 'honza/vim-snippets'
 Plug 'fholgado/minibufexpl.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
 Plug 'pangloss/vim-javascript'
 Plug 'juvenn/mustache.vim'
 Plug 'othree/html5-syntax.vim'
-"Plugin 'christoomey/vim-tmux-navigator'
-"Plugin 'davidhalter/jedi-vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'HenryNewcomer/vim-theme-papaya'
 Plug 'posva/vim-vue'
 Plug 'ambv/black'
+
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 call plug#end()
 
@@ -77,6 +77,13 @@ let g:Powerline_symbols='fancy'
 
 " airline settings
 let g:airline_powerline_fonts = 1
+
+
+" Ultisnips
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsUsePythonVersion=3
 
 so ~/github.vim
 
@@ -157,24 +164,6 @@ autocmd BufWritePre *.xml :%s/\s\+$//e "
 " highligth > 80 chars line
 "au BufWinEnter * let w:m1=matchadd('Search', '\%<81v.\%>77v', -1)
 "au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
-
-" ~~~~~ Omni  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-set completeopt=menu
-au Filetype * let &l:ofu = (len(&ofu) ? &ofu : 'syntaxcomplete#Complete')
-
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
-autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-autocmd FileType c set omnifunc=ccomplete#Complete
-"let g:SuperTabDefaultCompletionType = "<C-X><C-O>" " supertab
-"let g:SuperTabDefaultCompletionType = "context" " supertab
-
-" ~~~~~ Jedi-vim ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-let g:jedi#use_tabs_not_buffers = 0
-let g:SuperTabDefaultCompletionType = "<C-space>" " supertab
 
 
 " ~~~~~ Filetype settings ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -289,4 +278,4 @@ nnoremap <C-V> "+gPl
 vnoremap <C-V> :<C-U>call Paste("v")<CR>
 inoremap <C-V> <C-O>:call Paste("i")<CR>
 
-imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+"imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
