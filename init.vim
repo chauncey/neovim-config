@@ -30,8 +30,6 @@ call plug#end()
 "Set mapleader
 let mapleader = ","
 
-
-
 set noea " set no equal always for splits
 set autoindent
 set smartindent
@@ -207,11 +205,11 @@ set guifont=Fira\ Code\ 11
 
 if os == "AIX"
     colorscheme jellycc
-	au BufRead,BufNewFile *.lst set filetype=bbx
+    au BufRead,BufNewFile *.lst set filetype=bbx
     au FileType bbx setl nonumber
-	nnoremap <F4> :execute BBXListSave()<CR>
-	nnoremap bo :execute BBXLoadInput()<CR>
-	nnoremap bs :execute BBXSave()<CR>
+    nnoremap <F4> :execute BBXListSave()<CR>
+    nnoremap bo :execute BBXLoadInput()<CR>
+    nnoremap bs :execute BBXSave()<CR>
 endif
 
 if os == "Linux"
@@ -220,7 +218,7 @@ if os == "Linux"
     else
         colorscheme purpleycolor "heman "jellycc
     endif
-	au BufRead,BufNewFile *.lst set filetype=vb
+    au BufRead,BufNewFile *.lst set filetype=vb
     set guioptions-=m
     set guioptions-=T
     set guifont=Source\ Code\ Pro\ 11
@@ -274,15 +272,15 @@ function! <SID>SynStack()
 endfunc
 
 function! Paste(mode)
-  if a:mode == "v"
-    normal gv
-    normal "+P
-    normal l
-  elseif a:mode == "i"
-    set virtualedit=all
-    normal `^"+gP
-    let &virtualedit = ""
-  endif
+    if a:mode == "v"
+        normal gv
+        normal "+P
+        normal l
+    elseif a:mode == "i"
+        set virtualedit=all
+        normal `^"+gP
+        let &virtualedit = ""
+    endif
 endfunction
 
 vnoremap <C-X> "+d
