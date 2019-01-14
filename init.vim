@@ -10,7 +10,7 @@ Plug 'tpope/vim-fugitive'
 "Plugin 'tpope/vim-dispatch'
 Plug 'mattn/emmet-vim'
 "Plugin 'ervandew/snipmate.vim'
-"Plugin 'ervandew/supertab'
+Plug 'ervandew/supertab'
 Plug 'fholgado/minibufexpl.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
@@ -21,6 +21,8 @@ Plug 'othree/html5-syntax.vim'
 "Plugin 'davidhalter/jedi-vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'HenryNewcomer/vim-theme-papaya'
+Plug 'posva/vim-vue'
+Plug 'ambv/black'
 
 call plug#end()
 
@@ -74,6 +76,9 @@ let loaded_matchparen = 1
 " powerline - status bar twinks
 set encoding=utf-8
 let g:Powerline_symbols='fancy'
+
+" airline settings
+let g:airline_powerline_fonts = 1
 
 so ~/github.vim
 
@@ -177,7 +182,7 @@ let g:SuperTabDefaultCompletionType = "<C-space>" " supertab
 " ~~~~~ Filetype settings ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 autocmd BufRead *.py let python_highlight_builtins = 1
 autocmd BufRead *.py let python_highlight_numbers = 1
-au FileType html,xml,xhtml,pt,javascript,css,htmldjango setl shiftwidth=2 tabstop=2 softtabstop=2
+au FileType html,xml,yaml,xhtml,pt,javascript,css,htmldjango,vue setl shiftwidth=2 tabstop=2 softtabstop=2
 au FileType python,java,php setl shiftwidth=4 tabstop=4
 
 
@@ -194,17 +199,6 @@ function! JavaScriptFold()
 endfunction
 au FileType javascript call JavaScriptFold()
 au FileType javascript setl fen
-
-
-" ~~~~~ Python  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-python << EOF
-import os
-import sys
-import vim
-for p in sys.path:
-    if os.path.isdir(p):
-        vim.command(r"set path+=%s" % (p.replace(" ", r"\ ")))
-EOF
 
 
 " ~~~~~ GUI and OS specific stuff  ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -297,3 +291,4 @@ nnoremap <C-V> "+gPl
 vnoremap <C-V> :<C-U>call Paste("v")<CR>
 inoremap <C-V> <C-O>:call Paste("i")<CR>
 
+imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
